@@ -1,20 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour {
 
     private enum State { Welcome, ScanMode, HoldingToOp, OpToHolding };
-
     private State state;
 
-    [SerializeField] private Canvas welcome;
+    private static bool _runWebcam = false;
+    public static bool runwebcam { get { return _runWebcam; } }
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] private Canvas welcome, scan;
+    [SerializeField] private Button scanButton;
+    [SerializeField] private Text scanPurposeText, scanConfirmationText;
+    [SerializeField] private Image scanConfirmationBg;
+
+    // Use this for initialization
+    void Start () {
         state = State.Welcome;
 
-        QR.doProcessQR = holdingToOp;
+        welcome.enabled = true;
+        scan.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +29,7 @@ public class Main : MonoBehaviour {
 		
 	}
 
+    // QR parse heper
     private int checkParse (string text, string cookie) {
         if (text.Substring(0, cookie.Length).Equals(cookie)) {
             return int.Parse(text.Substring(cookie.Length));
@@ -31,11 +39,33 @@ public class Main : MonoBehaviour {
         return -1;
     }
 
+    private IEnumerator fadeOutConfirmation() {
+        yield return new WaitForSeconds(1f);
+        scanConfirmationBg.enabled = false;
+        _runWebcam = true;
+    }
+    
+    // Various QR processing situations
+
     private void holdingToOp (string text) {
         int num = checkParse(text, "volunteer");
         if (num != -1) {
-            print("Parsed! " + num);
+            _runWebcam = false;
+            scanConfirmationText.text = string.Format("Volunteer {0} is now in operation.", num);
+            scanConfirmationBg.enabled = true;
+            StartCoroutine(fadeOutConfirmation());
         }
 
+    }
+
+    // Button callbacks
+
+    public void OnButtonProceed () {
+
+        welcome.enabled = false;
+        scan.enabled = true;
+
+        QR.doProcessQR = holdingToOp;
+        _runWebcam = true;
     }
 }
