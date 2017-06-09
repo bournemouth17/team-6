@@ -46,7 +46,7 @@ public class QR : MonoBehaviour {
                 }
 
             } catch (Exception ex) {
-                Debug.LogWarning(ex.Message);
+                Debug.LogWarning(ex);
             }
         }
     }

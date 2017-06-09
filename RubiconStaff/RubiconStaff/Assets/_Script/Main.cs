@@ -22,7 +22,9 @@ public class Main : MonoBehaviour {
 
         welcome.enabled = true;
         scan.enabled = false;
-	}
+        scanConfirmationBg.enabled = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,9 +42,11 @@ public class Main : MonoBehaviour {
     }
 
     private IEnumerator fadeOutConfirmation() {
+        print("In Coroutine");
         yield return new WaitForSeconds(1f);
         scanConfirmationBg.enabled = false;
         _runWebcam = true;
+        yield return new WaitForSeconds(1f);
     }
     
     // Various QR processing situations
@@ -54,6 +58,7 @@ public class Main : MonoBehaviour {
             scanConfirmationText.text = string.Format("Volunteer {0} is now in operation.", num);
             scanConfirmationBg.enabled = true;
             StartCoroutine(fadeOutConfirmation());
+            print("After Start Coroutine");
         }
 
     }
