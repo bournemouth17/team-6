@@ -16,7 +16,6 @@ public class Main : MonoBehaviour {
     [SerializeField] private Text scanPurposeText, scanConfirmationText;
     [SerializeField] private Image scanConfirmationBg;
 
-    // Use this for initialization
     void Start () {
         state = State.Welcome;
 
@@ -25,11 +24,7 @@ public class Main : MonoBehaviour {
         scanConfirmationBg.enabled = false;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
     // QR parse heper
     private int checkParse (string text, string cookie) {
@@ -41,12 +36,11 @@ public class Main : MonoBehaviour {
         return -1;
     }
 
-    private IEnumerator fadeOutConfirmation() {
-        print("In Coroutine");
-        yield return new WaitForSeconds(1f);
+    private IEnumerator fadeOutConfirmation(float delay) {
+        yield return new WaitForSeconds(delay);
+        scanConfirmationText.text = "";
         scanConfirmationBg.enabled = false;
         _runWebcam = true;
-        yield return new WaitForSeconds(1f);
     }
     
     // Various QR processing situations
@@ -57,8 +51,7 @@ public class Main : MonoBehaviour {
             _runWebcam = false;
             scanConfirmationText.text = string.Format("Volunteer {0} is now in operation.", num);
             scanConfirmationBg.enabled = true;
-            StartCoroutine(fadeOutConfirmation());
-            print("After Start Coroutine");
+            StartCoroutine(fadeOutConfirmation(1.9f));
         }
 
     }

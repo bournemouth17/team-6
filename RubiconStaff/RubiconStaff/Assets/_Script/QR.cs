@@ -31,7 +31,6 @@ public class QR : MonoBehaviour {
         // Cheers to https://medium.com/@adrian.n/reading-and-generating-qr-codes-with-c-in-unity-3d-the-easy-way-a25e1d85ba51
         // Drawing the camera on screen
         if (Main.runwebcam) {
-            print("Run Webcam");
             GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleAndCrop);
             // do the reading — you might want to attempt to read less often than you draw on the screen for performance sake
             try {
