@@ -19,9 +19,9 @@ public class Main : MonoBehaviour {
     void Start () {
         state = State.Welcome;
 
-        welcome.enabled = true;
-        scan.enabled = false;
-        scanConfirmationBg.enabled = false;
+        welcome.gameObject.SetActive (true);
+        scan.gameObject.SetActive(false);
+        scanConfirmationBg.gameObject.SetActive(false);
 
     }
 
@@ -39,7 +39,7 @@ public class Main : MonoBehaviour {
     private IEnumerator fadeOutConfirmation(float delay) {
         yield return new WaitForSeconds(delay);
         scanConfirmationText.text = "";
-        scanConfirmationBg.enabled = false;
+        scanConfirmationBg.gameObject.SetActive(false);
         _runWebcam = true;
     }
     
@@ -50,7 +50,7 @@ public class Main : MonoBehaviour {
         if (num != -1) {
             _runWebcam = false;
             scanConfirmationText.text = string.Format("Volunteer {0} is now in operation.", num);
-            scanConfirmationBg.enabled = true;
+            scanConfirmationBg.gameObject.SetActive(true);
             StartCoroutine(fadeOutConfirmation(1.9f));
         }
 
@@ -60,8 +60,8 @@ public class Main : MonoBehaviour {
 
     public void OnButtonProceed () {
 
-        welcome.enabled = false;
-        scan.enabled = true;
+        welcome.gameObject.SetActive(false);
+        scan.gameObject.SetActive(true);
 
         QR.doProcessQR = holdingToOp;
         _runWebcam = true;
