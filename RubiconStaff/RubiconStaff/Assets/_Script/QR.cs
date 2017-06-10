@@ -6,8 +6,7 @@ using ZXing;
 
 public class QR : MonoBehaviour {
 
-    //public delegate void ProcessQR (string text);
-    public static Action<string> doProcessQR;
+    public static Action<string> ProcessQR;
 
     private WebCamTexture camTexture;
     private Rect screenRect;
@@ -42,10 +41,10 @@ public class QR : MonoBehaviour {
                     // decode the current frame
                     var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
                     if (result != null) {
-                        if (doProcessQR == null)
+                        if (ProcessQR == null)
                             Debug.LogWarning("DECODED TEXT FROM QR DROPPED: " + result.Text);
                         else
-                            doProcessQR(result.Text);
+                            ProcessQR(result.Text);
                     }
 
                 } catch (Exception ex) {

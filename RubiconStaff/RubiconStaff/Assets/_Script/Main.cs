@@ -21,6 +21,7 @@ public class Main : MonoBehaviour {
 
     private string activeTeamName;
     private Canvas activeCanvas;
+    private Volunteer activeVolunteer;
     private Volunteer[] volunteers = { new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer() };
 
     void Start () {
@@ -52,7 +53,7 @@ public class Main : MonoBehaviour {
 
 
     // QR parse heper
-    private int checkParse (string text, string cookie) {
+    private int CheckParse (string text, string cookie) {
         if (text.Substring(0, cookie.Length).Equals(cookie)) {
             return int.Parse(text.Substring(cookie.Length));
         }
@@ -61,40 +62,40 @@ public class Main : MonoBehaviour {
         return -1;
     }
 
-    private IEnumerator fadeOutMessage(float delay, Action afterFade) {
+    private IEnumerator FadeOutMessage(float delay, Action afterFade) {
         yield return new WaitForSeconds(delay);
         scanConfirmationText.text = "";
         scanConfirmationBg.gameObject.SetActive(false);
         afterFade();
     }
 
-    private void popupMessage(string text, float delay, Action afterFade) {
+    private void PopupMessage(string text, float delay, Action afterFade) {
         scanConfirmationText.text = text;
         scanConfirmationBg.gameObject.SetActive(true);
-        StartCoroutine(fadeOutMessage(delay, afterFade));
+        StartCoroutine(FadeOutMessage(delay, afterFade));
     }
 
     // Various QR processing situations
 
-    private void holdingSignon (string text) {
-        int num = checkParse(text, "volunteer");
+    private void HoldingSignon (string text) {
+        int num = CheckParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
-            popupMessage(string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName), 1.9f, () =>_runWebcam = true);
+            PopupMessage(string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName), 1.9f, () =>_runWebcam = true);
         }
 
     }
 
-    private void holdingSignoff (string text) {
-        int num = checkParse(text, "volunteer");
+    private void HoldingSignoff (string text) {
+        int num = CheckParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
-            popupMessage(string.Format("Volunteer {0} is signed off.", num, activeTeamName), 1.9f, () => _runWebcam = true);
+            PopupMessage(string.Format("Volunteer {0} is signed off.", num, activeTeamName), 1.9f, () => _runWebcam = true);
         }
 
     }
 
-    private void selectMode (string text) {
+    private void SelectMode (string text) {
         //print("|"+text+ "|");
         if (text.Equals("holding")) {
             ChangeCanvas(holding);
@@ -107,13 +108,13 @@ public class Main : MonoBehaviour {
         else if (text.Equals("guidance")) {
             ChangeCanvas(scanVolunteer);
             scanPurposeText.text = string.Format("Scan a volunteer's QR code to view their details.");
-            QR.doProcessQR = idForGuidance;
+            QR.ProcessQR = IdForGuidance;
             state = State.Guidance;
         }
     }
 
-    private void idForGuidance (string text) {
-        int num = checkParse(text, "volunteer");
+    private void IdForGuidance (string text) {
+        int num = CheckParse(text, "volunteer");
         if (num != -1) {
             // Populate user data
             guidanceHeader.text = string.Format("Volunteer #{0}\nJohn Doe", num);
@@ -150,7 +151,7 @@ public class Main : MonoBehaviour {
 
             // Adjust text on scan
             scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them onto {0} team.", activeTeamName);
-            QR.doProcessQR = holdingSignon;
+            QR.ProcessQR = HoldingSignon;
         }
         else {
             activeTeamName = null;
@@ -163,17 +164,17 @@ public class Main : MonoBehaviour {
 
         scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them off.", activeTeamName);
 
-        QR.doProcessQR = holdingSignoff;
+        QR.ProcessQR = HoldingSignoff;
     }
 
     public void OnButtonUseNumber() {
-        QR.doProcessQR("volunteer" + numberInput.text);
+        QR.ProcessQR("volunteer" + numberInput.text);
     }
 
     public void OnButtonChangeRole() {
         state = State.ModeSelection;
         ChangeCanvas(scanRole);
-        QR.doProcessQR = selectMode;
+        QR.ProcessQR = SelectMode;
     }
 
     public void OnButtonBack() {
@@ -187,10 +188,10 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonConfirm() {
-        popupMessage("Volunteer accepted", 1f, () => ChangeCanvas(scanVolunteer));
+        PopupMessage("Volunteer accepted", 1f, () => ChangeCanvas(scanVolunteer));
     }
 
     public void OnButtonReject() {
-        popupMessage("Volunteer rejected", 1f, () => ChangeCanvas(scanVolunteer));
+        PopupMessage("Volunteer rejected", 1f, () => ChangeCanvas(scanVolunteer));
     }
 }
