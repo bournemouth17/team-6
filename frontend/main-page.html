@@ -254,7 +254,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/scripts.js"></script>
 
 <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-
+<script src="js/scßreenfull.js"></script>
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+			if (!screenfull.enabled) {
+				return false;
+			}
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});
+		});
+		</script>
 
 </body>
 </html>
