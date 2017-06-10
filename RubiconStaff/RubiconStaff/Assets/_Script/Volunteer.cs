@@ -4,6 +4,7 @@
 
 public class Volunteer {
 
+    private static Random random = new Random();
     private static int totalNo = 0;
     private static string[] fnPool = { "John", "Jane", "Steve", "Bill", "Anna", "Oliver", "Daniel", "Ellie" },
                             lnPool = { "Doe", "Wiseman", "Nash", "Johnson", "Veall" },
@@ -14,7 +15,6 @@ public class Volunteer {
     public bool approved, inOperation;
 
     public Volunteer() {
-        Random random = new Random();
         totalNo++;
         no = totalNo;
         firstName = fnPool[random.Next(0, fnPool.Length-1)];

@@ -145,7 +145,7 @@ public class Main : MonoBehaviour {
             guidanceHeader.text = string.Format("Volunteer #{0}\n{1} {2}", num, activeVolunteer.firstName, activeVolunteer.lastName);
             guidanceText.text = string.Format("Last Guidance session: {0}\n{1}", activeVolunteer.lastGuidance, activeVolunteer.staticNotes);
             guidanceNotes.text = activeVolunteer.dynamicNotes;
-
+ 
             ChangeCanvas(guidance);
             
             
@@ -157,6 +157,8 @@ public class Main : MonoBehaviour {
     public void OnButtonProceed () {
 
         // TODO Establish SQL connection
+        // Screw
+  
         //MySqlConnection conn = new MySqlConnection("user id=force;server=34.252.35.209;connection timeout=30");
         //try {
         //    conn.Open();
@@ -166,6 +168,7 @@ public class Main : MonoBehaviour {
         //state = State.ModeSelection;
         //ChangeCanvas(scanRole);
         //QR.doProcessQR = selectMode;
+
         OnButtonChangeRole();
     }
 
@@ -195,6 +198,7 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonUseNumber() {
+        // Laziest hack
         QR.ProcessQR("volunteer" + numberInput.text);
     }
 
@@ -215,10 +219,14 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonConfirm() {
+        activeVolunteer.dynamicNotes = guidanceNotes.text;
+        activeVolunteer.approved = true;
         PopupMessage("Volunteer accepted", 1f, () => ChangeCanvas(scanVolunteer));
     }
 
     public void OnButtonReject() {
+        activeVolunteer.dynamicNotes = guidanceNotes.text;
+        activeVolunteer.approved = false;
         PopupMessage("Volunteer rejected", 1f, () => ChangeCanvas(scanVolunteer));
     }
 }
