@@ -37,9 +37,9 @@ if (isset($_POST["submitButton"])){
 	$conn = new mysqli($servername, $username, $password);
 
 	// Check connection
-	if ($conn->connect_error) {
-    	die("Connection failed: " . $conn->connect_error);
-	}
+	//if ($conn->connect_error) {
+    	//die("Connection failed: " . $conn->connect_error);
+	//}
 	if(isset($_POST['name'])) {
 		$name = $_POST['name'];
 	}
@@ -66,9 +66,6 @@ if (isset($_POST["submitButton"])){
 	}
 	if(isset($_POST['indoor'])) {
 		$indoor = $_POST['indoor'];
-	}
-	if(isset($_POST['streetAddress'])) {
-		$streetAddress = $_POST['streetAddress'];
 	}
 	if(isset($_POST['streetAddress'])) {
 		$streetAddress = $_POST['streetAddress'];
