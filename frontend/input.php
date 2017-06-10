@@ -27,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 <body>
-<?php
+//<?php
 //if (isset($_POST["submitButton"])){
 	//$servername = "34.252.35.209";
 	//$username = "root";
@@ -128,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	//$conn->close();
 	//$mysqli->close();
 //}
-?>
+//>
 <!-- banner -->
 <div class="wthree_agile_admin_info">
 		  <!-- /w3_agileits_top_nav-->
