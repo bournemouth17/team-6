@@ -73,12 +73,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>Assets\DLL2\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>Assets\DLL2\System.Data.dll</HintPath>
-    </Reference>
     <Reference Include="zxing.unity">
       <HintPath>Assets\DLL2\zxing.unity.dll</HintPath>
     </Reference>
