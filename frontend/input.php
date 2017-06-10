@@ -29,9 +29,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <?php
 if (isset($_POST["submitButton"])){
-	$servername = "34.252.35.209";
-	$username = "root";
-	$password = "root";
+	//$servername = "34.252.35.209";
+	//$username = "root";
+	//$password = "root";
 
 	// Create connection
 	//$conn = new mysqli($servername, $username, $password);
