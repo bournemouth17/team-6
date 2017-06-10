@@ -5,22 +5,26 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour {
 
-    private enum State { Welcome, ScanMode, HoldingToOp, OpToHolding };
+    private enum State { Welcome, ModeSelection, Holding };
     private State state;
 
     private static bool _runWebcam = false;
     public static bool runwebcam { get { return _runWebcam; } }
 
-    [SerializeField] private Canvas welcome, scan;
+    [SerializeField] private Canvas welcome, scan, holding;
     [SerializeField] private Button scanButton;
     [SerializeField] private Text scanPurposeText, scanConfirmationText;
     [SerializeField] private Image scanConfirmationBg;
+    [SerializeField] private InputField teamInput;
+
+    private string activeTeamName;
 
     void Start () {
         state = State.Welcome;
 
         welcome.gameObject.SetActive (true);
         scan.gameObject.SetActive(false);
+        holding.gameObject.SetActive(false);
         scanConfirmationBg.gameObject.SetActive(false);
 
     }
@@ -42,10 +46,11 @@ public class Main : MonoBehaviour {
         scanConfirmationBg.gameObject.SetActive(false);
         _runWebcam = true;
     }
-    
+
+
     // Various QR processing situations
 
-    private void holdingToOp (string text) {
+    private void holdingSignon (string text) {
         int num = checkParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
@@ -56,14 +61,71 @@ public class Main : MonoBehaviour {
 
     }
 
+    private void holdingSignoff (string text) {
+        int num = checkParse(text, "volunteer");
+        if (num != -1) {
+            _runWebcam = false;
+            scanConfirmationText.text = string.Format("Volunteer {0} is signed off.", num);
+            scanConfirmationBg.gameObject.SetActive(true);
+            StartCoroutine(fadeOutConfirmation(1.9f));
+        }
+
+    }
+
+    private void selectMode (string text) {
+        if (text.Equals("holding")) {
+            _runWebcam = false;
+            scan.gameObject.SetActive(false);
+            holding.gameObject.SetActive(true);
+        }
+
+        else if (text.Equals("reception")) {
+            // TODO
+        }
+        else if (text.Equals("guidance")) {
+            // TODO
+        }
+    }
+
     // Button callbacks
 
     public void OnButtonProceed () {
 
+        // TODO Establish SQL connection
+
         welcome.gameObject.SetActive(false);
         scan.gameObject.SetActive(true);
 
-        QR.doProcessQR = holdingToOp;
+        QR.doProcessQR = selectMode;
+        _runWebcam = true;
+    }
+
+    public void OnButtonSignOn () {
+
+        activeTeamName = teamInput.text;
+        if (activeTeamName.Length > 1) {
+
+            holding.gameObject.SetActive(false);
+            scan.gameObject.SetActive(true);
+
+            // Adjust text on scan
+
+            QR.doProcessQR = holdingSignon;
+            _runWebcam = true;
+        }
+        else {
+            activeTeamName = null;
+        }
+    }
+
+    public void OnButtonSignOff () {
+
+        holding.gameObject.SetActive(false);
+        scan.gameObject.SetActive(true);
+
+        // Adjust text on scan
+
+        QR.doProcessQR = holdingSignoff;
         _runWebcam = true;
     }
 }
