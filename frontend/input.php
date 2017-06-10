@@ -44,10 +44,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 		$query = $conn->prepare = ("SELECT SignUp(Name, Surname, KnownAs, Age, Gender, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$query->bind_param('sssdssdsssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
-		nameVal = $name;
-		surnameVal = $surname;
-		knownAsVal = $knownas;
-		ageVal = $age;
+		nameVal = echo $name;
+		surnameVal = echo $surname;
+		knownAsVal = echo $knownas;
+		ageVal = echo $age;
 		
 		$query->execute();
 		$query->close();
