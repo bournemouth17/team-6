@@ -176,10 +176,10 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonConfirm() {
-
+        popupMessage("Volunteer accepted", 1f, () => ChangeCanvas(scanVolunteer));
     }
 
     public void OnButtonReject() {
-
+        popupMessage("Volunteer rejected", 1f, () => ChangeCanvas(scanVolunteer));
     }
 }
