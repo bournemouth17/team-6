@@ -126,6 +126,7 @@ if (isset($_POST["submitButton"])){
 	//$query->execute();
 	//$query->close();
 	$conn->close();
+	$mysqli->close();
 }
 ?>
 <!-- banner -->
