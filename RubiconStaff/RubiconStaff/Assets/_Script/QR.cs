@@ -12,6 +12,7 @@ public class QR : MonoBehaviour {
     private WebCamTexture camTexture;
     private Rect screenRect;
     [SerializeField] private Image destinationImage;
+    private int QRphase = 0;
 
     void Start () {
         //screenRect = new Rect(0, 0, Screen.width, Screen.height);
@@ -34,19 +35,22 @@ public class QR : MonoBehaviour {
         if (Main.runwebcam) {
             GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleAndCrop);
             // do the reading — you might want to attempt to read less often than you draw on the screen for performance sake
-            try {
-                IBarcodeReader barcodeReader = new BarcodeReader();
-                // decode the current frame
-                var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
-                if (result != null) {
-                    if (doProcessQR == null)
-                        Debug.LogWarning("DECODED TEXT FROM QR DROPPED: " + result.Text);
-                    else
-                        doProcessQR(result.Text);
-                }
+            QRphase = (QRphase + 1) % 30;
+            if (QRphase == 0) {
+                try {
+                    IBarcodeReader barcodeReader = new BarcodeReader();
+                    // decode the current frame
+                    var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
+                    if (result != null) {
+                        if (doProcessQR == null)
+                            Debug.LogWarning("DECODED TEXT FROM QR DROPPED: " + result.Text);
+                        else
+                            doProcessQR(result.Text);
+                    }
 
-            } catch (Exception ex) {
-                Debug.LogWarning(ex);
+                } catch (Exception ex) {
+                    Debug.LogWarning(ex);
+                }
             }
         }
     }

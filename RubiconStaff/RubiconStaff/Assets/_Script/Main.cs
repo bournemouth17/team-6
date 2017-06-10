@@ -21,6 +21,7 @@ public class Main : MonoBehaviour {
 
     private string activeTeamName;
     private Canvas activeCanvas;
+    private Volunteer[] volunteers = { new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer(), new Volunteer() };
 
     void Start () {
         state = State.Welcome;
@@ -134,10 +135,10 @@ public class Main : MonoBehaviour {
         //} catch (Exception e) {
         //    print(e);
         //}
-        state = State.ModeSelection;
-        ChangeCanvas(scanRole);
-
-        QR.doProcessQR = selectMode;
+        //state = State.ModeSelection;
+        //ChangeCanvas(scanRole);
+        //QR.doProcessQR = selectMode;
+        OnButtonChangeRole();
     }
 
     public void OnButtonSignOn () {
@@ -172,14 +173,17 @@ public class Main : MonoBehaviour {
     public void OnButtonChangeRole() {
         state = State.ModeSelection;
         ChangeCanvas(scanRole);
+        QR.doProcessQR = selectMode;
     }
 
     public void OnButtonBack() {
         // Hack around abusive canvas reusage
-        if (state == State.Holding)
+        if (state == State.Holding) {
             ChangeCanvas(holding);
-        else
+        }
+        else {
             OnButtonChangeRole();
+        }
     }
 
     public void OnButtonConfirm() {
