@@ -410,14 +410,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 																			<div class="wthree_general graph-form agile_info_shadow ">
 																				 <h3 class="w3_inner_tittle two">Interview Form </h3>
-
+                                                                                  <div class="tp">
+																											<input type="submit" id="submitButton" value="Load Details">
+																										</div>
 																					<div class="grid-1 ">
 																							<div class="form-body">
 																									<form class="form-horizontal">
 																										<div class="form-group">
-																											<div class="tp">
-																											<input type="submit" id="submitButton" value="Load Details">
-																										</div>
+																											
 																											<label for="focusedinput" class="col-sm-2 control-label">Given Name</label>
 																											<div class="col-sm-8">
 																												<input type="text" class="form-control1" id="name" placeholder="Given Name">
