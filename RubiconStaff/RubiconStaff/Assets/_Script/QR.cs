@@ -6,8 +6,8 @@ using ZXing.QrCode;
 
 public class QR : MonoBehaviour {
 
-    public delegate void ProcessQR (string text);
-    public static ProcessQR doProcessQR;
+    //public delegate void ProcessQR (string text);
+    public static Action<string> doProcessQR;
 
     private WebCamTexture camTexture;
     private Rect screenRect;

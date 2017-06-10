@@ -7,17 +7,17 @@ using System.Data.SqlClient;
 
 public class Main : MonoBehaviour {
 
-    private enum State { Welcome, ModeSelection, Holding };
+    private enum State { Welcome, ModeSelection, Guidance, Holding };
     private State state;
 
     private static bool _runWebcam = false;
     public static bool runwebcam { get { return _runWebcam; } }
 
-    [SerializeField] private Canvas welcome, scanRole, holding, scanHolding;
+    [SerializeField] private Canvas welcome, scanRole, holding, guidance, scanVolunteer;
     [SerializeField] private Button scanButton;
-    [SerializeField] private Text scanPurposeText, scanConfirmationText;
+    [SerializeField] private Text scanPurposeText, scanConfirmationText, guidanceHeader;
     [SerializeField] private Image scanConfirmationBg;
-    [SerializeField] private InputField teamInput, numberInput;
+    [SerializeField] private InputField teamInput, numberInput, guidanceNotes;
 
     private string activeTeamName;
     private Canvas activeCanvas;
@@ -29,7 +29,8 @@ public class Main : MonoBehaviour {
         welcome.gameObject.SetActive (true);
         scanRole.gameObject.SetActive (false);
         holding.gameObject.SetActive (false);
-        scanHolding.gameObject.SetActive (false);
+        guidance.gameObject.SetActive (false);
+        scanVolunteer.gameObject.SetActive (false);
 
         scanConfirmationBg.gameObject.SetActive(false);
 
@@ -40,7 +41,7 @@ public class Main : MonoBehaviour {
         activeCanvas = newCanvas;
         activeCanvas.gameObject.SetActive(true);
 
-        if (newCanvas == scanHolding || newCanvas == scanRole) {
+        if (newCanvas == scanVolunteer || newCanvas == scanRole) {
             _runWebcam = true;
         }
         else {
@@ -59,13 +60,18 @@ public class Main : MonoBehaviour {
         return -1;
     }
 
-    private IEnumerator fadeOutConfirmation(float delay) {
+    private IEnumerator fadeOutMessage(float delay, Action afterFade) {
         yield return new WaitForSeconds(delay);
         scanConfirmationText.text = "";
         scanConfirmationBg.gameObject.SetActive(false);
-        _runWebcam = true;
+        afterFade();
     }
 
+    private void popupMessage(string text, float delay, Action afterFade) {
+        scanConfirmationText.text = text;
+        scanConfirmationBg.gameObject.SetActive(true);
+        StartCoroutine(fadeOutMessage(delay, afterFade));
+    }
 
     // Various QR processing situations
 
@@ -73,9 +79,7 @@ public class Main : MonoBehaviour {
         int num = checkParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
-            scanConfirmationText.text = string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName);
-            scanConfirmationBg.gameObject.SetActive(true);
-            StartCoroutine(fadeOutConfirmation(1.9f));
+            popupMessage(string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName), 1.9f, () =>_runWebcam = true);
         }
 
     }
@@ -84,9 +88,7 @@ public class Main : MonoBehaviour {
         int num = checkParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
-            scanConfirmationText.text = string.Format("Volunteer {0} is signed off.", num);
-            scanConfirmationBg.gameObject.SetActive(true);
-            StartCoroutine(fadeOutConfirmation(1.9f));
+            popupMessage(string.Format("Volunteer {0} is signed off.", num, activeTeamName), 1.9f, () => _runWebcam = true);
         }
 
     }
@@ -101,7 +103,21 @@ public class Main : MonoBehaviour {
             // TODO
         }
         else if (text.Equals("guidance")) {
-            // TODO
+            ChangeCanvas(scanVolunteer);
+            scanPurposeText.text = string.Format("Scan a volunteer's QR code to view their details.");
+            QR.doProcessQR = idForGuidance;
+        }
+    }
+
+    private void idForGuidance (string text) {
+        int num = checkParse(text, "volunteer");
+        if (num != -1) {
+            // Populate user data
+            guidanceHeader.text = string.Format("Volunteer #{0}\nJohn Doe", num);
+
+            ChangeCanvas(guidance);
+            
+            
         }
     }
 
@@ -110,13 +126,13 @@ public class Main : MonoBehaviour {
     public void OnButtonProceed () {
 
         // TODO Establish SQL connection
-        MySqlConnection conn = new MySqlConnection("user id=force;server=34.252.35.209;connection timeout=30");
-        try {
-            conn.Open();
-        } catch (Exception e) {
-            print(e);
-        }
-
+        //MySqlConnection conn = new MySqlConnection("user id=force;server=34.252.35.209;connection timeout=30");
+        //try {
+        //    conn.Open();
+        //} catch (Exception e) {
+        //    print(e);
+        //}
+        state = State.ModeSelection;
         ChangeCanvas(scanRole);
 
         QR.doProcessQR = selectMode;
@@ -127,12 +143,11 @@ public class Main : MonoBehaviour {
         activeTeamName = teamInput.text;
         if (activeTeamName.Length > 1) {
 
-            ChangeCanvas(scanHolding);
+            ChangeCanvas(scanVolunteer);
 
             // Adjust text on scan
             scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them onto {0} team.", activeTeamName);
             QR.doProcessQR = holdingSignon;
-            _runWebcam = true;
         }
         else {
             activeTeamName = null;
@@ -141,12 +156,11 @@ public class Main : MonoBehaviour {
 
     public void OnButtonSignOff () {
         activeTeamName = null;
-        ChangeCanvas(scanHolding);
+        ChangeCanvas(scanVolunteer);
 
         scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them off.", activeTeamName);
 
         QR.doProcessQR = holdingSignoff;
-        _runWebcam = true;
     }
 
     public void OnButtonUseNumber() {
@@ -159,5 +173,13 @@ public class Main : MonoBehaviour {
 
     public void OnButtonBack() {
         ChangeCanvas(holding);
+    }
+
+    public void OnButtonConfirm() {
+
+    }
+
+    public void OnButtonReject() {
+
     }
 }
