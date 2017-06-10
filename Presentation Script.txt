@@ -91,4 +91,14 @@ TECHNICAL
  track of volunteers as once within a team they should be contactable
  via their grey shirt team leader.
 
- The QR code scanner is a Unity app which can be deployed on any platform. It aims to simplify and dramatically speed up the tasks of staff, especialy in the Holding area, where people are moving fast when called into operation. A group of spolunteers leaving the area can be tracked and assigned to a team within seconds by simply standing by the door and scanning the QR codes on their armbands as they walk by, no interaction required.
+We built the QR-code-based app in Unity and C#. We chose this powerful tool due
+to its simplicity of deploying to any platform. The app aims to simplify and
+ dramatically speed up the tasks of staff, especially
+ in the Holding area, where people are moving fast when called into operation.
+ A group of spolunteers leaving the area can be tracked and assigned to
+ a team within seconds by simply standing by the door and scanning the QR
+ codes on their armbands as they walk by, no interaction required. While our
+ prototype is just a proof of concept, a complete version of it would
+ immediately convey the status of a spolunteer to the central database,
+ making it immediately available to other staff using the app and to
+ central admin.
