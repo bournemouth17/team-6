@@ -157,113 +157,112 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																										<div class="form-group">
 																											<label for="focusedinput" class="col-sm-2 control-label">Given Name</label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="focusedinput" placeholder="Given Name">
+																												<input type="text" class="form-control1" id="name" placeholder="Given Name">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Surname</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="focusedinput" placeholder="Surname">
+																											 <input type="text" class="form-control1" id="surname" placeholder="Surname">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Known as</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="focusedinput" placeholder="Known as">
+																											 <input type="text" class="form-control1" id="knownas" placeholder="Known as">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Age</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="focusedinput" placeholder="Age">
+																											 <input type="text" class="form-control1" id="age" placeholder="Age">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Gender</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="focusedinput" placeholder="Gender">
+																											 <input type="text" class="form-control1" id="gender" placeholder="Gender">
 																										 </div>
 																									 </div>
 
 																										<div class="form-group">
 																											<label for="disabledinput" class="col-sm-2 control-label">Email address</label>
 																											<div class="col-sm-8">
-																												<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Email address">
+																												<input type="text" class="form-control1" id="email" placeholder="Email address">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																											<label for="focusedinput" class="col-sm-2 control-label">Mobile Number </label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="focusedinput" placeholder="Mobile Number">
+																												<input type="text" class="form-control1" id="mobile" placeholder="Mobile Number">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																											<label for="inputPassword" class="col-sm-2 control-label">Street Address</label>
 																											<div class="col-sm-8">
-																												<input type="password" class="form-control1" id="inputPassword" placeholder="Street Address">
+																												<input type="text" class="form-control1" id="address" placeholder="Street Address">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																											<label for="focusedinput" class="col-sm-2 control-label">Town/city</label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="focusedinput" placeholder="Town/city">
+																												<input type="text" class="form-control1" id="town" placeholder="Town/city">
 																											</div>
 																										</div>
 																										
 																											<div class="form-group">
 																											<label for="focusedinput" class="col-sm-2 control-label">Postcode</label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="focusedinput" placeholder="Postcode">
+																												<input type="text" class="form-control1" id="postcode" placeholder="Postcode">
 																											</div>
 																										</div>
 							
 																										<div class="form-group">
 																											<label for="checkbox" class="col-sm-2 control-label">Prefer to work Indoors</label>
 																											<div class="col-sm-8">
-																												<div class="checkbox-inline"><label><input type="checkbox"> Yes</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked=""> No</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> No Preference</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="indoor"> Yes</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="indoor"> No</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="indoor"> No Preference</label></div>
 																											</div>
 																										</div>
 																										
 																										<div class="form-group">
 																											<label for="checkbox" class="col-sm-2 control-label">Prefer to work Outdoors</label>
 																											<div class="col-sm-8">
-																												<div class="checkbox-inline"><label><input type="checkbox"> Yes</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked=""> No</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> No Preference</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="outdoor"> Yes</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="outdoor"> No</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="outdoor"> No Preference</label></div>
 																											</div>
 																										</div>
 																										
 																										<div class="form-group">
 																											<label for="checkbox" class="col-sm-2 control-label">Interests</label>
 																											<div class="col-sm-8">
-																												<div class="checkbox-inline"><label><input type="checkbox"> Data Entry</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked=""> Answering Phones/Taking Messages</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Managing Staff/Volunteer Rotas</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Translating</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked=""> Reception Duties</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Information Dissemination</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Information Gathering</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked=""> Mapping Routes</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Transporting Supplies/Equipment</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Loading/Unloading Vehicles</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked="">Packing Boxes</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Distributing Supplies</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Making Refreshments</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Loading/Unloading Vehicles</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked="">Staffing Feeding Stations for Responders</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" checked="">Cleaning Kit and Equipment</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Debris Clean Up</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Helping with Sandbangs</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox"> Assisting Other Agencies as Required</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="dataEntry"> Data Entry</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="answeringPhones"> Answering Phones/Taking Messages</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="managingStaff"> Managing Staff/Volunteer Rotas</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="translating"> Translating</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="receptionDuties"> Reception Duties</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="informationDiss"> Information Dissemination</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="informationGather"> Information Gathering</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="mappingRoutes"> Mapping Routes</label></div>
+																												<div class="checkbox-inline" ><label><input type="checkbox" name="transportingSupplies"> Transporting Supplies/Equipment</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="loadingVehicles"> Loading/Unloading Vehicles</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="packingBoxes">Packing Boxes</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="DistributingSupplies"> Distributing Supplies</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="MakingRefreshments"> Making Refreshments</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="StaffFeedingStations">Staffing Feeding Stations for Responders</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="cleaningKit">Cleaning Kit and Equipment</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="debrisClean"> Debris Clean Up</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="helpingWithSand"> Helping with Sandbangs</label></div>
+																												<div class="checkbox-inline"><label><input type="checkbox" name="assistingAgencies"> Assisting Other Agencies as Required</label></div>
 																										
 																											</div>
 																										</div>
