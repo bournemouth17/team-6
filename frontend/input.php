@@ -411,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																			<div class="wthree_general graph-form agile_info_shadow ">
 																				 <h3 class="w3_inner_tittle two">Interview Form </h3>
                                                                                   <div class="tp">
-																											<input type="submit" id="submitButton" value="Load Details">
+																											<input type="submit" id="submitButton" value="Submit">
 																										</div>
 																					<div class="grid-1 ">
 																							<div class="form-body">
