@@ -30,15 +30,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 <body>
+<?php
+if ($_POST){
+	$servername = "34.252.35.209";
+	$username = "root";
+	$password = "root";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password);
+
+	// Check connection
+	if ($conn->connect_error) {
+    	die("Connection failed: " . $conn->connect_error);
+	}
+	$sql = "INSERT INTO SignUp(Name, Surname, KnownAs, Age, Gender, Email, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails)
+	VALUES (name, surname, knownas, age, gender, email, mobile, $_POST['outdoor'], $_POST['indoor'], streetAddress, town, postcode, $_POST['dataEntry'], $_POST['answeringPhones'], $_POST['managingStaff'], $_POST['translating'], $_POST['receptionDuties'], $_POST['informationDiss'], $_POST['informationGather'], $_POST['mappingRoutes'], $_POST['loadingVehicles'], $_POST['distributingSupplies'], $_POST['staffFeeding'], $_POST['cleaningKit'], $_POST['debrisClean'], $_POST['assistingAgencies'], recieveEmails)";
+	$conn->query($sql)
+	
+	$conn->close();
+
+}
+?>
 <!-- banner -->
 <div class="wthree_agile_admin_info">
-		  <!-- /w3_agileits_top_nav-->
-		  <!-- /nav-->
-		  <div class="w3_agileits_top_nav">
-			<ul id="gn-menu" class="gn-menu-main">
-			  		 <!-- /nav_agile_w3l -->
-				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><i class="fa fa-bars" aria-hidden="true"></i><span>Menu</span></a>
+	<!-- /w3_agileits_top_nav-->
+	<!-- /nav-->
+	<div class="w3_agileits_top_nav">
+		<ul id="gn-menu" class="gn-menu-main">
+		 <!-- /nav_agile_w3l -->
+			<li class="gn-trigger">
+				<a class="gn-icon gn-icon-menu"><i class="fa fa-bars" aria-hidden="true"></i><span>Menu</span></a>
 					<nav class="gn-menu-wrapper">
 						<div class="gn-scroller scrollbar1">
 							<ul class="gn-menu agile_menu_drop">
@@ -94,55 +115,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="second logo"><h1><a href="main-page.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Esteem </a></h1></li>
 					<li class="second admin-pic">
 				       <ul class="top_dp_agile">
-									<li class="dropdown profile_details_drop">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-											<div class="profile_img">	
-												<span class="prfil-img"><img src="images/admin.jpg" alt=""> </span> 
-											</div>	
-										</a>
-										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-											<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
-										</ul>
-									</li>
-									
+							<li class="dropdown profile_details_drop">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<div class="profile_img">	
+										<span class="prfil-img"><img src="images/admin.jpg" alt=""> </span> 
+									</div>	
+								</a>
+								<ul class="dropdown-menu drp-mnu">
+									<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+									<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
+									<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+								</ul>
+							</li>
 						</ul>
-				</li>
-				<li class="second top_bell_nav">
-				   <ul class="top_dp_agile ">
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell-o" aria-hidden="true"></i> <span class="badge blue">4</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>Your Notifications</h3>
-												</div>
-											</li>
-											<li><a href="#">
-												<div class="user_img"><img src="images/a3.jpg" alt=""></div>
-											   <div class="notification_desc">
-											     <h6>John Smith</h6>
+					</li>
+					<li class="second top_bell_nav">
+						<ul class="top_dp_agile ">
+							<li class="dropdown head-dpdn">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell-o" aria-hidden="true"></i> <span class="badge blue">4</span></a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="notification_header">
+												<h3>Your Notifications</h3>
+											</div>
+										</li>
+										<li><a href="#">
+											<div class="user_img"><img src="images/a3.jpg" alt=""></div>
+											<div class="notification_desc">
+												<h6>John Smith</h6>
 												<p>Lorem ipsum dolor</p>
 												<p><span>1 hour ago</span></p>
+											</div>
+											<div class="clearfix"></div>	
+										</a></li>
+										<li class="odd"><a href="#">
+											<div class="user_img"><img src="images/a1.jpg" alt=""></div>
+												<div class="notification_desc">
+													<h6>Jasmin Leo</h6>
+													<p>Lorem ipsum dolor</p>
+													<p><span>3 hour ago</span></p>
 												</div>
-											  <div class="clearfix"></div>	
-											 </a></li>
-											 <li class="odd"><a href="#">
-												<div class="user_img"><img src="images/a1.jpg" alt=""></div>
-											   <div class="notification_desc">
-											     <h6>Jasmin Leo</h6>
-												<p>Lorem ipsum dolor</p>
-												<p><span>3 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											 </a></li>
-											 <li><a href="#">
-												<div class="user_img"><img src="images/a2.jpg" alt=""></div>
-											   <div class="notification_desc">
-											     <h6>James Smith</h6>
-												<p>Lorem ipsum dolor</p>
-												<p><span>2 hour ago</span></p>
+												<div class="clearfix"></div>	
+										</a></li>
+										<li><a href="#">
+											<div class="user_img"><img src="images/a2.jpg" alt=""></div>
+												<div class="notification_desc">
+													<h6>James Smith</h6>
+													<p>Lorem ipsum dolor</p>
+													<p><span>2 hour ago</span></p>
 												</div>
 											   <div class="clearfix"></div>	
 											 </a></li>
