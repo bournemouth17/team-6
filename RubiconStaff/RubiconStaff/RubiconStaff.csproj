@@ -76,6 +76,21 @@
     <Reference Include="zxing.unity">
       <HintPath>Assets\DLL\zxing.unity.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets\DLL\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West">
+      <HintPath>Assets\DLL\I18N.West.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N">
+      <HintPath>Assets\DLL\I18N.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets\DLL2\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>Assets\DLL2\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Script\Main.cs" />

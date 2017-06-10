@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 public class Main : MonoBehaviour {
 
@@ -23,7 +25,7 @@ public class Main : MonoBehaviour {
     void Start () {
         state = State.Welcome;
         activeCanvas = welcome;
-
+ 
         welcome.gameObject.SetActive (true);
         scanRole.gameObject.SetActive (false);
         holding.gameObject.SetActive (false);
@@ -71,7 +73,7 @@ public class Main : MonoBehaviour {
         int num = checkParse(text, "volunteer");
         if (num != -1) {
             _runWebcam = false;
-            scanConfirmationText.text = string.Format("Volunteer {0} is now in operation.", num);
+            scanConfirmationText.text = string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName);
             scanConfirmationBg.gameObject.SetActive(true);
             StartCoroutine(fadeOutConfirmation(1.9f));
         }
@@ -108,6 +110,12 @@ public class Main : MonoBehaviour {
     public void OnButtonProceed () {
 
         // TODO Establish SQL connection
+        MySqlConnection conn = new MySqlConnection("user id=force;server=34.252.35.209;connection timeout=30");
+        try {
+            conn.Open();
+        } catch (Exception e) {
+            print(e);
+        }
 
         ChangeCanvas(scanRole);
 
@@ -122,7 +130,7 @@ public class Main : MonoBehaviour {
             ChangeCanvas(scanHolding);
 
             // Adjust text on scan
-
+            scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them onto {0} team.", activeTeamName);
             QR.doProcessQR = holdingSignon;
             _runWebcam = true;
         }
@@ -132,10 +140,10 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonSignOff () {
-
+        activeTeamName = null;
         ChangeCanvas(scanHolding);
 
-        // Adjust text on scan
+        scanPurposeText.text = string.Format("Scan a volunteer's QR code to sign them off.", activeTeamName);
 
         QR.doProcessQR = holdingSignoff;
         _runWebcam = true;
