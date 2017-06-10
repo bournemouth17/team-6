@@ -28,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <?php
-if (isset($_POST["submitButton"])){
+//if (isset($_POST["submitButton"])){
 	//$servername = "34.252.35.209";
 	//$username = "root";
 	//$password = "root";
@@ -127,7 +127,7 @@ if (isset($_POST["submitButton"])){
 	//$query->close();
 	//$conn->close();
 	//$mysqli->close();
-}
+//}
 ?>
 <!-- banner -->
 <div class="wthree_agile_admin_info">
