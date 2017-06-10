@@ -2,8 +2,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
+//using MySql.Data.MySqlClient;
+//using System.Data.SqlClient;
 
 public class Main : MonoBehaviour {
 
@@ -97,6 +97,7 @@ public class Main : MonoBehaviour {
         //print("|"+text+ "|");
         if (text.Equals("holding")) {
             ChangeCanvas(holding);
+            state = State.Holding;
         }
 
         else if (text.Equals("reception")) {
@@ -106,6 +107,7 @@ public class Main : MonoBehaviour {
             ChangeCanvas(scanVolunteer);
             scanPurposeText.text = string.Format("Scan a volunteer's QR code to view their details.");
             QR.doProcessQR = idForGuidance;
+            state = State.Guidance;
         }
     }
 
@@ -168,11 +170,16 @@ public class Main : MonoBehaviour {
     }
 
     public void OnButtonChangeRole() {
+        state = State.ModeSelection;
         ChangeCanvas(scanRole);
     }
 
     public void OnButtonBack() {
-        ChangeCanvas(holding);
+        // Hack around abusive canvas reusage
+        if (state == State.Holding)
+            ChangeCanvas(holding);
+        else
+            OnButtonChangeRole();
     }
 
     public void OnButtonConfirm() {

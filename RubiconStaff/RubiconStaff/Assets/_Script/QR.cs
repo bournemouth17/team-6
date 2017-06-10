@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
-using ZXing.QrCode;
+//using ZXing.QrCode;
 
 public class QR : MonoBehaviour {
 
