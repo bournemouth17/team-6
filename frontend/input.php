@@ -34,7 +34,7 @@ if (isset($_POST["submitButton"])){
 	$password = "root";
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password);
+	//$conn = new mysqli($servername, $username, $password);
 
 	// Check connection
 	//if ($conn->connect_error) {
@@ -125,8 +125,8 @@ if (isset($_POST["submitButton"])){
 	//$query->bind_param('sssdssdssssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $email, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
 	//$query->execute();
 	//$query->close();
-	$conn->close();
-	$mysqli->close();
+	//$conn->close();
+	//$mysqli->close();
 }
 ?>
 <!-- banner -->
