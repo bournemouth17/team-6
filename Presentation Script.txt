@@ -1,0 +1,94 @@
+After our breakout Q&A session we brainstormed for about an hour
+deciding what our "mission statement" was as concise as possible.
+We decided that our main goal was to "Create a web application that
+improves the efficiency of registering and tracking spontaneous
+volunteers by management during each disaster"
+
+REQUIREMENTS
+We then asked ourselves what we wanted to achieve in our solution.
+Number 1; better user experience. We wanted to make a product that
+reduced the number of stages involved in the day of a spolunteer,
+a spontaneous volunteer, and also made the signing up process more
+user friendly.
+We achieved this through our second requirement; more mobile use.
+The spolunteers needed a quick and easy way to sign up to volunteer
+that didn't take up too much of the grey shirts' time and we agreed
+that the most successful way to do this would be through a web
+application.
+Thirdly, we needed a solution that would work for potentially many
+volunteers.
+Fourthly a secure system that better handled the potentially
+sensitive information held on the spolunteers and limited the amount
+of fields that each manager at different stages of the sign up
+process had to view.
+Fifth we wanted a way to uniquely identify each spolunteer so that
+lastly, the managers knew where each spolunteer was meant to be
+throughout the day, further to the colour on their armband.
+
+PROCESS
+Spolunteers sign up to volunteer via a mobile friendly web
+application either en route to the site or at reception. By giving
+them the option of signing up and filling out their details
+beforehand it saves crowding and time wasted at reception.
+They also have the chance to watch training videos online, again
+saving time when they actually arrive on site.
+On arrival they can be identified by their email address and assigned
+a unique spolunteer number by a unique QR code.
+The spolunteer number is stored in the database and is used to track
+the availability and location of spolunteers throughout the day.
+
+ At the interview stage the staff member can identify the volunteer
+ by their number or QR code and talk through the skills that the
+ volunteer identified in the sign up form. This has to be done in
+ person but can then be ticked off on the database and the volunteer
+ can progress to the holding tent.
+
+ Staff can now use the database to see how many spolunteers are
+ available and filter the list to identify and use spolunteers with
+ specific skills sets. The most suitable would be unique to each
+ disaster. As each volunteer goes out their QR code is scanned
+ and they are assigned to a team, easily identifiable by a database
+ query.
+
+ At the end of the day the spolunteer has to return their armband
+ and the QR code is scanned again which removes their spolunteer
+ number from the database thus indicating to the manager that they
+ are no longer available. Spolunteers can then indicate their future
+ availability. If a spolunteer finishes a second shift they are
+ sent an email asking if they would like to sign up to be a grey
+ shirt.
+
+WHY HAVE YOU USED THAT SOFTWARE/LANGUAGE/TECH
+ So how have we implemented these processes? Sign up is made via
+ a mobile site because it is a widely accessible platform
+ and volunteers can complete the information either en route to
+ or at the site. We have used....
+ The database is built using mysql because it is more secure than
+ a google form and can be linked both with the mobile application
+ and an app for the QR code.
+ The QR code is built using unity...
+
+
+TECHNICAL
+ Website is built using...
+
+ The database is built using mysql and addresses scalability,
+ security and location track. It is split into two tables; the first
+ one stores the sign up information each spolunteer fills out on the
+ mobile site. It can store large amounts of data and each member of
+ staff has to sign into it. In the interests of privacy, each manager
+ can limit what information is visible to them by running specific
+ queries which we wrote using javascript. It satisfies location track
+ by working the the QR code. When the spolunteer is in the holding tent
+ they have a spolunteer number given with the QR code but no workforce
+ holding number. When the volunteer goes out on site their QR code is
+ scanned and they are assigned a workforce holding number. When the
+ spolunteer returns to the holding tent their QR code is scanned and
+ their workforce holding number deleted on the database indicating
+ they are free again. When they finally sign out their QR code is
+ scanned one last time and their spolunteer number is deleted meaning
+ they are no longer on site. We think this is a good way to keep
+ track of volunteers as once within a team they should be contactable
+ via their grey shirt team leader.
+
+ The QR code scanner is a Unity app which can be deployed on any platform. It aims to simplify and dramatically speed up the tasks of staff, especialy in the Holding area, where people are moving fast when called into operation. A group of spolunteers leaving the area can be tracked and assigned to a team within seconds by simply standing by the door and scanning the QR codes on their armbands as they walk by, no interaction required.
