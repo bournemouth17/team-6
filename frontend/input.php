@@ -28,106 +28,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <?php
-if (isset($_POST["submitButton"])){
-	$servername = "34.252.35.209";
-	$username = "root";
-	$password = "root";
+	if (isset($_POST["submitButton"])){
+		$servername = "34.252.35.209";
+		$username = "root";
+		$password = "root";
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password);
+		// Create connection
+		$conn = new mysqli($servername, $username, $password);
 
-	// Check connection
-	if ($conn->connect_error) {
-    	die("Connection failed: " . $conn->connect_error);
-	}
-	if(isset($_POST['name'])) {
-		$name = $_POST['name'];
-	}
-	if(isset($_POST['surname'])) {
-		$surname = $_POST['surname'];
-	}
-	if(isset($_POST['knownas'])) {
-		$knownas = $_POST['knownas'];
-	}
-	if(isset($_POST['age'])) {
-		$age = $_POST['age'];
-	}
-	if(isset($_POST['gender'])) {
-		$gender = $_POST['gender'];
-	}
-	if(isset($_POST['email'])) {
-		$email = $_POST['email'];
-	}
-	if(isset($_POST['mobile'])) {
-		$mobile = $_POST['mobile'];
-	}
-	if(isset($_POST['outdoor'])) {
-		$outdoor = $_POST['outdoor'];
-	}
-	if(isset($_POST['indoor'])) {
-		$indoor = $_POST['indoor'];
-	}
-	if(isset($_POST['streetAddress'])) {
-		$streetAddress = $_POST['streetAddress'];
-	}
-	if(isset($_POST['town'])) {
-		$town = $_POST['town'];
-	}
-	if(isset($_POST['postcode'])) {
-		$postcode = $_POST['postcode'];
-	}
-	if(isset($_POST['dataEntry'])) {
-		$dataEntry = $_POST['dataEntry'];
-	}
-	if(isset($_POST['answeringPhones'])) {
-		$answeringPhones = $_POST['answeringPhones'];
-	}
-	if(isset($_POST['managingStaff'])) {
-		$managingStaff = $_POST['managingStaff'];
-	}
-	if(isset($_POST['translating'])) {
-		$translating = $_POST['translating'];
-	}
-	if(isset($_POST['receptionDuties'])) {
-		$receptionDuties = $_POST['receptionDuties'];
-	}
-	if(isset($_POST['informationDiss'])) {
-		$informationDiss = $_POST['informationDiss'];
-	}
-	if(isset($_POST['informationGather'])) {
-		$informationGather = $_POST['informationGather'];
-	}
-	if(isset($_POST['mappingRoutes'])) {
-		$mappingRoutes = $_POST['mappingRoutes'];
-	}
-	if(isset($_POST['loadingVehicles'])) {
-		$loadingVehicles = $_POST['loadingVehicles'];
-	}
-	if(isset($_POST['distributingSupplies'])) {
-		$distributingSupplies = $_POST['distributingSupplies'];
-	}
-	if(isset($_POST['staffFeeding'])) {
-		$staffFeeding = $_POST['staffFeeding'];
-	}
-	if(isset($_POST['cleaningKit'])) {
-		$cleaningKit = $_POST['cleaningKit'];
-	}
-	if(isset($_POST['debrisClean'])) {
-		$debrisClean = $_POST['debrisClean'];
-	}
-	if(isset($_POST['assistingAgencies'])) {
-		$assistingAgencies = $_POST['assistingAgencies'];
-	}
-	if(isset($_POST['recieveEmails'])) {
-		$recieveEmails = $_POST['recieveEmails'];
-	}
-	$query = $conn->prepare = ("INSERT INTO SignUp(Name, Surname, KnownAs, Age, Gender, Email, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-	$query->bind_param('sssdssdssssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $email, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
-	$query->execute();
-	$query->close();
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		if(isset($_POST['name'])) {
+			$name = $_POST['name'];
+		}
+		if(isset($_POST['surname'])) {
+			$surname = $_POST['surname'];
+		}
+		if(isset($_POST['knownas'])) {
+			$knownas = $_POST['knownas'];
+		}
+		if(isset($_POST['age'])) {
+			$age = $_POST['age'];
+		}
+		if(isset($_POST['gender'])) {
+			$gender = $_POST['gender'];
+		}
+		if(isset($_POST['email'])) {
+			$email = $_POST['email'];
+		}
+		if(isset($_POST['mobile'])) {
+			$mobile = $_POST['mobile'];
+		}
+		if(isset($_POST['outdoor'])) {
+			$outdoor = $_POST['outdoor'];
+		}
+		if(isset($_POST['indoor'])) {
+			$indoor = $_POST['indoor'];
+		}
+		if(isset($_POST['streetAddress'])) {
+			$streetAddress = $_POST['streetAddress'];
+		}
+		if(isset($_POST['town'])) {
+			$town = $_POST['town'];
+		}
+		if(isset($_POST['postcode'])) {
+			$postcode = $_POST['postcode'];
+		}
+		if(isset($_POST['dataEntry'])) {
+			$dataEntry = $_POST['dataEntry'];
+		}
+		if(isset($_POST['answeringPhones'])) {
+			$answeringPhones = $_POST['answeringPhones'];
+		}
+		if(isset($_POST['managingStaff'])) {
+			$managingStaff = $_POST['managingStaff'];
+		}
+		if(isset($_POST['translating'])) {
+			$translating = $_POST['translating'];
+		}
+		if(isset($_POST['receptionDuties'])) {
+			$receptionDuties = $_POST['receptionDuties'];
+		}
+		if(isset($_POST['informationDiss'])) {
+			$informationDiss = $_POST['informationDiss'];
+		}
+		if(isset($_POST['informationGather'])) {
+			$informationGather = $_POST['informationGather'];
+		}
+		if(isset($_POST['mappingRoutes'])) {
+			$mappingRoutes = $_POST['mappingRoutes'];
+		}
+		if(isset($_POST['loadingVehicles'])) {
+			$loadingVehicles = $_POST['loadingVehicles'];
+		}
+		if(isset($_POST['distributingSupplies'])) {
+			$distributingSupplies = $_POST['distributingSupplies'];
+		}
+		if(isset($_POST['staffFeeding'])) {
+			$staffFeeding = $_POST['staffFeeding'];
+		}
+		if(isset($_POST['cleaningKit'])) {
+			$cleaningKit = $_POST['cleaningKit'];
+		}
+		if(isset($_POST['debrisClean'])) {
+			$debrisClean = $_POST['debrisClean'];
+		}
+		if(isset($_POST['assistingAgencies'])) {
+			$assistingAgencies = $_POST['assistingAgencies'];
+		}
+		if(isset($_POST['recieveEmails'])) {
+			$recieveEmails = $_POST['recieveEmails'];
+		}
+		$query = $conn->prepare = ("INSERT INTO SignUp(Name, Surname, KnownAs, Age, Gender, Email, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$query->bind_param('sssdssdssssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $email, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
+		$query->execute();
+		$query->close();
 
-}
->
+	}
+?>
 <!-- banner -->
 <div class="wthree_agile_admin_info">
 		  <!-- /w3_agileits_top_nav-->
