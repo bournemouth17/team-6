@@ -29,6 +29,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <?php
+	if (isset($_POST["loadButton"])){
+		$servername = "34.252.35.209";
+		$username = "root";
+		$password = "root";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+	
+		$query = $conn->prepare = ("SELECT SignUp(Name, Surname, KnownAs, Age, Gender, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$query->bind_param('sssdssdssssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
+		nameVal = $name;
+		surnameVal = $surname;
+		knownAsVal = $knownas;
+		ageVal = $age;
+		
+		$query->execute();
+		$query->close();
+
+		
+	}
 	if (isset($_POST["submitButton"])){
 		$servername = "34.252.35.209";
 		$username = "root";
@@ -292,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																											</div>
 																										</div>
 																										<div class="tp">
-																											<input type="submit" id="submitButton" value="Load Volunteer details">
+																											<input type="submit" id="loadButton" value="Load Volunteer details">
 																										</div>
 																					<div class="grid-1 ">
 																							<div class="form-body">
@@ -301,28 +326,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																											
 																											<label for="focusedinput" class="col-sm-2 control-label">Given Name</label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="name" placeholder="Given Name">
+																												<input type="text" class="form-control1" id="name" placeholder="Given Name" value="nameVal">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Surname</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="surname" placeholder="Surname">
+																											 <input type="text" class="form-control1" id="surname" placeholder="Surname" value="surnameVal">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Known as</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="knownas" placeholder="Known as">
+																											 <input type="text" class="form-control1" id="knownas" placeholder="Known as" value="knownAsVal">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Age</label>
 																										 <div class="col-sm-8">
-																											 <input type="int" class="form-control1" id="age" placeholder="Age">
+																											 <input type="int" class="form-control1" id="age" placeholder="Age" value="ageVal">
 																										 </div>
 																									 </div>
 
