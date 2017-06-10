@@ -285,7 +285,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 																			<div class="wthree_general graph-form agile_info_shadow ">
 																				 <h3 class="w3_inner_tittle two">Interview Form </h3>
-                                                                                  <div class="tp">
+                                                                                  	<div class="form-group">
+																											<label for="disabledinput" class="col-sm-2 control-label">Email address</label>
+																											<div class="col-sm-8">
+																												<input type="text" class="form-control1" id="email" placeholder="Email address">
+																											</div>
+																										</div>
+																										<div class="tp">
 																											<input type="submit" id="submitButton" value="Load Volunteer details">
 																										</div>
 																					<div class="grid-1 ">
@@ -327,12 +333,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																										 </div>
 																									 </div>
 
-																										<div class="form-group">
-																											<label for="disabledinput" class="col-sm-2 control-label">Email address</label>
-																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="email" placeholder="Email address">
-																											</div>
-																										</div>
+																									
 
 																										<div class="form-group">
 																											<label for="focusedinput" class="col-sm-2 control-label">Mobile Number </label>
