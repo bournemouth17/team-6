@@ -29,6 +29,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <?php
+	if (isset($_POST["loadButton"])){
+		$servername = "34.252.35.209";
+		$username = "root";
+		$password = "root";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+	
+		$query = $conn->prepare = ("SELECT SignUp(Name, Surname, KnownAs, Age, Gender, MobileNum, Outdoor, Indoor, StreetAddress, TownCity, Postcode, DataEntry, AnsweringPhones, ManagingStaff, Translating, ReceptionDuties, InformationDissemination, InformationGathering, MappingRoutes, TransportingSupplies, LoadingVehicles, PackingBoxes, DistributingSupplies, MakingRefreshments, StaffFeedingStations, CleaningKit, DebrisCleanUp, HelpingWithSandBags, AssistingOtherAgencies, RecieveEmails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$query->bind_param('sssdssdsssssssssssssssssss', $name, $surname, $knownas, $age, $gender, $mobile, $outdoor, $indoor, $streetAddress, $town, $postcode, $dataEntry, $answeringPhones, $managingStaff, $translating, $receptionDuties, $informationDiss, $informationGather, $mappingRoutes, $loadingVehicles, $distributingSupplies, $staffFeeding, $cleaningKit, $debrisClean, $assistingAgencies, $recieveEmails);
+		nameVal = echo $name;
+		surnameVal = echo $surname;
+		knownAsVal = echo $knownas;
+		ageVal = echo $age;
+		
+		$query->execute();
+		$query->close();
+
+		
+	}
 	if (isset($_POST["submitButton"])){
 		$servername = "34.252.35.209";
 		$username = "root";
@@ -147,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<a href="#"> <i class="fa fa-file-text-o" aria-hidden="true"></i>Forms <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="gn-submenu">
-										<li class="mini_list_agile"><a href="input.html"><i class="fa fa-caret-right" aria-hidden="true"></i> Inputs</a></li>
+										<li class="mini_list_agile"><a href="input.php"><i class="fa fa-caret-right" aria-hidden="true"></i> Inputs</a></li>
 									</ul>
 								</li>
 								<li><a href="table.html"> <i class="fa fa-table" aria-hidden="true"></i> Tables</a></li>
@@ -187,61 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 				</li>
 				
-				<li class="second top_bell_nav">
-				   <ul class="top_dp_agile ">
-				       <li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue">9</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 4 Pending tasks</h3>
-												</div>
-											</li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Database update</span><span class="percentage">40%</span>
-													<div class="clearfix"></div>
-												</div>
-												<div class="progress progress-striped active">
-													<div class="bar yellow" style="width:40%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-												   <div class="clearfix"></div>
-												</div>
-												<div class="progress progress-striped active">
-													 <div class="bar green" style="width:90%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-													<div class="clearfix"></div>
-												</div>
-											   <div class="progress progress-striped active">
-													 <div class="bar red" style="width: 33%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-												   <div class="clearfix"></div>
-												</div>
-												<div class="progress progress-striped active">
-													 <div class="bar  blue" style="width: 80%;"></div>
-												</div>
-											</a></li>
-											<li>
-												<div class="notification_bottom">
-													<a href="#">See all pending tasks</a>
-												</div>
-											</li>
-										</ul>
-									</li>
-								</ul>
-				</li>
+			
 
 				<li class="second w3l_search">
 
@@ -292,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																											</div>
 																										</div>
 																										<div class="tp">
-																											<input type="submit" id="submitButton" value="Load Volunteer details">
+																											<input type="submit" id="loadButton" value="Load Volunteer details">
 																										</div>
 																					<div class="grid-1 ">
 																							<div class="form-body">
@@ -301,28 +272,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																											
 																											<label for="focusedinput" class="col-sm-2 control-label">Given Name</label>
 																											<div class="col-sm-8">
-																												<input type="text" class="form-control1" id="name" placeholder="Given Name">
+																												<input type="text" class="form-control1" id="name" placeholder="Given Name" value="nameVal">
 																											</div>
 																										</div>
 
 																										<div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Surname</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="surname" placeholder="Surname">
+																											 <input type="text" class="form-control1" id="surname" placeholder="Surname" value="surnameVal">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Known as</label>
 																										 <div class="col-sm-8">
-																											 <input type="text" class="form-control1" id="knownas" placeholder="Known as">
+																											 <input type="text" class="form-control1" id="knownas" placeholder="Known as" value="knownAsVal">
 																										 </div>
 																									 </div>
 
 																									 <div class="form-group">
 																										 <label for="focusedinput" class="col-sm-2 control-label">Age</label>
 																										 <div class="col-sm-8">
-																											 <input type="int" class="form-control1" id="age" placeholder="Age">
+																											 <input type="int" class="form-control1" id="age" placeholder="Age" value="ageVal">
 																										 </div>
 																									 </div>
 
