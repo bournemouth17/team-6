@@ -260,7 +260,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																												<div class="checkbox-inline"><label><input type="checkbox" name="MakingRefreshments"> Making Refreshments</label></div>
 																												<div class="checkbox-inline"><label><input type="checkbox" name="StaffFeedingStations">Staffing Feeding Stations for Responders</label></div>
 																												<div class="checkbox-inline"><label><input type="checkbox" name="cleaningKit">Cleaning Kit and Equipment</label></div>
-																												<div class="checkbox-inline"><label><input type="checkbox" name="debrisClean"> Debris Clean Up</label></div>
+																													<div class="checkbox-inline"><label><input type="checkbox" name="debrisClean"> Debris Clean Up</label></div>
 																												<div class="checkbox-inline"><label><input type="checkbox" name="helpingWithSand"> Helping with Sandbangs</label></div>
 																												<div class="checkbox-inline"><label><input type="checkbox" name="assistingAgencies"> Assisting Other Agencies as Required</label></div>
 																										
