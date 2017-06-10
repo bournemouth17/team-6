@@ -11,22 +11,39 @@ public class Main : MonoBehaviour {
     private static bool _runWebcam = false;
     public static bool runwebcam { get { return _runWebcam; } }
 
-    [SerializeField] private Canvas welcome, scan, holding;
+    [SerializeField] private Canvas welcome, scanRole, holding, scanHolding;
     [SerializeField] private Button scanButton;
     [SerializeField] private Text scanPurposeText, scanConfirmationText;
     [SerializeField] private Image scanConfirmationBg;
-    [SerializeField] private InputField teamInput;
+    [SerializeField] private InputField teamInput, numberInput;
 
     private string activeTeamName;
+    private Canvas activeCanvas;
 
     void Start () {
         state = State.Welcome;
+        activeCanvas = welcome;
 
         welcome.gameObject.SetActive (true);
-        scan.gameObject.SetActive(false);
-        holding.gameObject.SetActive(false);
+        scanRole.gameObject.SetActive (false);
+        holding.gameObject.SetActive (false);
+        scanHolding.gameObject.SetActive (false);
+
         scanConfirmationBg.gameObject.SetActive(false);
 
+    }
+
+    private void ChangeCanvas (Canvas newCanvas) {
+        activeCanvas.gameObject.SetActive(false);
+        activeCanvas = newCanvas;
+        activeCanvas.gameObject.SetActive(true);
+
+        if (newCanvas == scanHolding || newCanvas == scanRole) {
+            _runWebcam = true;
+        }
+        else {
+            _runWebcam = false;
+        }
     }
 
 
@@ -75,9 +92,7 @@ public class Main : MonoBehaviour {
     private void selectMode (string text) {
         //print("|"+text+ "|");
         if (text.Equals("holding")) {
-            _runWebcam = false;
-            scan.gameObject.SetActive(false);
-            holding.gameObject.SetActive(true);
+            ChangeCanvas(holding);
         }
 
         else if (text.Equals("reception")) {
@@ -94,11 +109,9 @@ public class Main : MonoBehaviour {
 
         // TODO Establish SQL connection
 
-        welcome.gameObject.SetActive(false);
-        scan.gameObject.SetActive(true);
+        ChangeCanvas(scanRole);
 
         QR.doProcessQR = selectMode;
-        _runWebcam = true;
     }
 
     public void OnButtonSignOn () {
@@ -106,8 +119,7 @@ public class Main : MonoBehaviour {
         activeTeamName = teamInput.text;
         if (activeTeamName.Length > 1) {
 
-            holding.gameObject.SetActive(false);
-            scan.gameObject.SetActive(true);
+            ChangeCanvas(scanHolding);
 
             // Adjust text on scan
 
@@ -121,12 +133,23 @@ public class Main : MonoBehaviour {
 
     public void OnButtonSignOff () {
 
-        holding.gameObject.SetActive(false);
-        scan.gameObject.SetActive(true);
+        ChangeCanvas(scanHolding);
 
         // Adjust text on scan
 
         QR.doProcessQR = holdingSignoff;
         _runWebcam = true;
+    }
+
+    public void OnButtonUseNumber() {
+        QR.doProcessQR("volunteer" + numberInput.text);
+    }
+
+    public void OnButtonChangeRole() {
+        ChangeCanvas(scanRole);
+    }
+
+    public void OnButtonBack() {
+        ChangeCanvas(holding);
     }
 }
