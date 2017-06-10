@@ -73,6 +73,7 @@ public class Main : MonoBehaviour {
     }
 
     private void selectMode (string text) {
+        //print("|"+text+ "|");
         if (text.Equals("holding")) {
             _runWebcam = false;
             scan.gameObject.SetActive(false);

@@ -15,8 +15,9 @@ public class QR : MonoBehaviour {
 
     void Start () {
         //screenRect = new Rect(0, 0, Screen.width, Screen.height);
-        Vector2 position = destinationImage.transform.position;
         Vector2 size = destinationImage.rectTransform.sizeDelta;
+        Vector2 position = destinationImage.transform.position;
+        position.y = Screen.height - position.y;
         screenRect = new Rect(position - size/2, size);
 
         camTexture = new WebCamTexture();
