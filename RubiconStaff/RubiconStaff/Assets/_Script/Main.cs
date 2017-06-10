@@ -15,7 +15,7 @@ public class Main : MonoBehaviour {
 
     [SerializeField] private Canvas welcome, scanRole, holding, guidance, scanVolunteer;
     [SerializeField] private Button scanButton;
-    [SerializeField] private Text scanPurposeText, scanConfirmationText, guidanceHeader;
+    [SerializeField] private Text scanPurposeText, scanConfirmationText, guidanceHeader, guidanceText;
     [SerializeField] private Image scanConfirmationBg;
     [SerializeField] private InputField teamInput, numberInput, guidanceNotes;
 
@@ -79,18 +79,40 @@ public class Main : MonoBehaviour {
 
     private void HoldingSignon (string text) {
         int num = CheckParse(text, "volunteer");
-        if (num != -1) {
-            _runWebcam = false;
-            PopupMessage(string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName), 1.9f, () =>_runWebcam = true);
-        }
+        activeVolunteer = volunteers[num - 1];
 
+        if (num > 0 && num <= volunteers.Length) {
+            _runWebcam = false;
+
+            if (!activeVolunteer.inOperation && activeVolunteer.approved) {
+                volunteers[num - 1].inOperation = true;
+                PopupMessage(string.Format("Volunteer {0} is now on team {1}.", num, activeTeamName), 2.2f, () => _runWebcam = true);
+            }
+            else {
+                if (activeVolunteer.inOperation) {
+                    PopupMessage(string.Format("Volunteer {0} is already on duty!", num, activeTeamName), 2.5f, () => _runWebcam = true);
+                }
+                else {
+                    PopupMessage(string.Format("Volunteer {0} is not approved for duty!", num, activeTeamName), 2.5f, () => _runWebcam = true);
+                }
+            }
+        }
     }
 
     private void HoldingSignoff (string text) {
         int num = CheckParse(text, "volunteer");
-        if (num != -1) {
+        activeVolunteer = volunteers[num - 1];
+
+        if (num > 0 && num <= volunteers.Length) {
             _runWebcam = false;
-            PopupMessage(string.Format("Volunteer {0} is signed off.", num, activeTeamName), 1.9f, () => _runWebcam = true);
+     
+            if (activeVolunteer.inOperation) {
+                activeVolunteer.inOperation = false;
+                PopupMessage(string.Format("Volunteer {0} is signed off.", num, activeTeamName), 2f, () => _runWebcam = true);
+            }
+            else {
+                PopupMessage(string.Format("Volunteer {0} was already off duty!", num, activeTeamName), 2.5f, () => _runWebcam = true);
+            }
         }
 
     }
@@ -105,6 +127,7 @@ public class Main : MonoBehaviour {
         else if (text.Equals("reception")) {
             // TODO
         }
+
         else if (text.Equals("guidance")) {
             ChangeCanvas(scanVolunteer);
             scanPurposeText.text = string.Format("Scan a volunteer's QR code to view their details.");
@@ -117,7 +140,11 @@ public class Main : MonoBehaviour {
         int num = CheckParse(text, "volunteer");
         if (num != -1) {
             // Populate user data
-            guidanceHeader.text = string.Format("Volunteer #{0}\nJohn Doe", num);
+            activeVolunteer = volunteers[num - 1];
+
+            guidanceHeader.text = string.Format("Volunteer #{0}\n{1} {2}", num, activeVolunteer.firstName, activeVolunteer.lastName);
+            guidanceText.text = string.Format("Last Guidance session: {0}\n{1}", activeVolunteer.lastGuidance, activeVolunteer.staticNotes);
+            guidanceNotes.text = activeVolunteer.dynamicNotes;
 
             ChangeCanvas(guidance);
             

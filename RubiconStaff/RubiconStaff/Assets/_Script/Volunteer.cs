@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System;
 
 // The purpose of this class is to simulate the volunteer instances that should reside in a database but sadly don't
 
@@ -14,14 +14,15 @@ public class Volunteer {
     public bool approved, inOperation;
 
     public Volunteer() {
+        Random random = new Random();
         totalNo++;
         no = totalNo;
-        firstName = fnPool[Random.Range(0, fnPool.Length)];
-        lastName = lnPool[Random.Range(0, lnPool.Length)];
-        staticNotes = snPool[Random.Range(0, snPool.Length)];
+        firstName = fnPool[random.Next(0, fnPool.Length-1)];
+        lastName = lnPool[random.Next(0, lnPool.Length-1)];
+        staticNotes = snPool[random.Next(0, snPool.Length-1)];
         dynamicNotes = "";
-        lastGuidance = Random.Range(0, 2) == 0 ?
-                "" + Random.Range(0, 31) + ".0" + Random.Range(4, 6) + ".2017" :
+        lastGuidance = random.Next(0, 1) == 0 ?
+                "" + random.Next(0, 30) + ".0" + random.Next(4, 5) + ".2017" :
                 "Never";
         approved = false;
         inOperation = false;
